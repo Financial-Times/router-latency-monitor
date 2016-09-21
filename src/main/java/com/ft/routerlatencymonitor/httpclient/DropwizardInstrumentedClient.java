@@ -26,13 +26,12 @@ public class DropwizardInstrumentedClient implements APIFTCOMClient {
 
             for (String endpoint: endpointsToGet) {
 
-                log.info("Endpoint={}", endpoint);
                 WebTarget webTarget = client
                         .target(endpoint)
                         .queryParam("apiKey", MASHERY_API_KEY);
 
                 Response response = webTarget.request().get();
-                log.info("StatusCode={}", response.getStatus());
+                log.info("endpoint={} statuse={}", response.getStatus());
             }
         }
     }
