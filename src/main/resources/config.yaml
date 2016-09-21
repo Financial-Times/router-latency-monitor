@@ -19,28 +19,28 @@ logging:
       timeZone: UTC
       logFormat: "%-5p [%d{ISO8601,UTC}] %c: %X %marker %m%n%rEx"
 
-#metrics:
-#  reporters:
-##      - type: console
-##        frequency: 1 minute
-#    - type: graphite
-#      host: dabe343d.carbon.hostedgraphite.com
-#      port: 2003
-#      includes:
-#        - org.apache.http.client.*
-#      useRegexFilters: true
-#      prefix: ${graphite-api-key:-apikey}.api.ft.com.router.monitor6
-
 metrics:
   reporters:
+#      - type: console
+#        frequency: 1 minute
     - type: graphite
-      host: graphite.ft.com
+      host: dabe343d.carbon.hostedgraphite.com
       port: 2003
-      frequency: 1 minute
-      prefix: membership.router.latencymonitor.heroku-prod.svc.web
       includes:
         - org.apache.http.client.*
       useRegexFilters: true
+      prefix: ${graphite-api-key:-apikey}.api.ft.com.router.monitor
+
+#metrics:
+#  reporters:
+#    - type: graphite
+#      host: graphite.ft.com
+#      port: 2003
+#      frequency: 1 minute
+#      prefix: membership.router.latencymonitor.heroku-prod.svc.web
+#      includes:
+#        - org.apache.http.client.*
+#      useRegexFilters: true
 
 jerseyClient:
   timeout: 30s
