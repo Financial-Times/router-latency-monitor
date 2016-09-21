@@ -8,7 +8,7 @@ public class JaxRSClient implements APIFTCOMClient {
 
     public void makeHttpRequestsForLatencyMonitoring() {
 
-        for (String endpoint : ENDPOINTS_TO_GET) {
+        for (String endpoint : ENDPOINTS_TO_GET[0]) {
 
             WebTarget webTarget = ClientBuilder
                     .newClient()

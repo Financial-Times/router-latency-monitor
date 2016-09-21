@@ -32,13 +32,17 @@ public class RouterLatencyMonitorMain extends Application<RouterLatencyMonitorCo
     public void run(final RouterLatencyMonitorConfig routerLatencyMonitorConfig,
                     final Environment environment) throws Exception {
 
-        final Client client = new JerseyClientBuilder(environment)
+        final Client masheryClient = new JerseyClientBuilder(environment)
                 .using(routerLatencyMonitorConfig.getJerseyClientConfiguration())
-                .build("ak-testing");
+                .build("mashery-client");
+
+        final Client fastlyRouterClient = new JerseyClientBuilder(environment)
+                .using(routerLatencyMonitorConfig.getJerseyClientConfiguration())
+                .build("fastly-router-client");
 
 //        environment.jersey().register(new ExternalServiceResource(client));
 
-        APIFTCOMClient apiftcomClient = new DropwizardInstrumentedClient(client);
+        APIFTCOMClient apiftcomClient = new DropwizardInstrumentedClient(masheryClient, fastlyRouterClient);
 
         ScheduledExecutorServiceBuilder scheduledExecutorServiceBuilder = environment
                                                                             .lifecycle()
