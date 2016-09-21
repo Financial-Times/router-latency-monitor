@@ -29,7 +29,7 @@ metrics:
       includes:
         - org.apache.http.client.*
       useRegexFilters: true
-      prefix: ${graphite-api-key:-apikey}.api.ft.com.router.monitor3
+      prefix: ${graphite-api-key:-apikey}.api.ft.com.router.monitor5
 
 jerseyClient:
   timeout: 30s
