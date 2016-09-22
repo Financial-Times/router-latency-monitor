@@ -30,9 +30,19 @@ public class DropwizardInstrumentedClient implements APIFTCOMClient {
                         .target(endpoint)
                         .queryParam("apiKey", MASHERY_API_KEY);
 
-                Response response = webTarget.request().get();
-                log.info("endpoint={} status={}", endpoint, response.getStatus());
-                response.readEntity(String.class);
+                Response response = null;
+                try {
+                    response = webTarget.request().get();
+                    log.info("endpoint={} status={}", endpoint, response.getStatus());
+                    response.readEntity(String.class);
+                    response.close();
+                } catch (Exception e) {
+                    log.error("exception while invoking and reading webtarget response", e);
+                    if (response != null) {
+                        response.close();
+                    }
+                }
+
             }
         }
     }
