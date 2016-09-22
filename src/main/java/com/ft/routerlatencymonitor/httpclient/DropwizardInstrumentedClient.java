@@ -32,6 +32,7 @@ public class DropwizardInstrumentedClient implements APIFTCOMClient {
 
                 Response response = webTarget.request().get();
                 log.info("endpoint={} status={}", endpoint, response.getStatus());
+                response.readEntity(String.class);
             }
         }
     }
