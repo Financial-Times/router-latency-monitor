@@ -47,7 +47,7 @@ jerseyClient:
   connectionTimeout: 5s
 
 scheduler:
-  periodInSeconds: 30
+  periodInSeconds: 6
   initialDelayInSeconds: 5
 
 
